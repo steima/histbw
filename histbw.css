@@ -1,0 +1,64 @@
+body {
+	padding: 0px;
+	margin: 0px;
+}
+
+#histBwContainer {
+	width: 1024px;
+	height: 730px;
+	position: absolute;
+}
+
+.imgFrame {
+	position: absolute;
+}
+
+.originalImage {
+	width: 1024px;
+	height: 730px;
+	background-image: url('img/original.jpg');
+}
+
+.toneImage {
+	width: 700px;
+	height: 500px;
+	background-image: url('img/tone.jpg');
+}
+
+.monoImage {
+	right: 0px;
+	bottom: 0px;
+	width: 100px;
+	height: 100px;
+	background-image: url('img/mono.jpg');
+	background-position: right bottom;
+}
+
+.monoToneImage {
+	left: 324px;
+	top: 330px;
+	z-index: 1000;
+	width: 376px;
+	height: 175px;
+	background-position: -324px -330px;
+	background-image: url('img/monotone.jpg');
+	display: none;
+}
+
+.dragElement {
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	background-color: red;
+}
+
+#toneDrag {
+	right: 0px;
+	bottom: 0px;
+}
+
+#monoDrag {
+	left: 0px;
+	top: 0px;
+	z-index: 1001;
+}
