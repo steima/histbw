@@ -16,13 +16,13 @@ body {
 .originalImage {
 	width: 1024px;
 	height: 730px;
-	background-image: url('img/original.jpg');
+	background-image: url('img/original.png');
 }
 
 .toneImage {
 	width: 700px;
 	height: 500px;
-	background-image: url('img/tone.jpg');
+	background-image: url('img/tone.png');
 }
 
 .monoImage {
@@ -30,7 +30,7 @@ body {
 	bottom: 0px;
 	width: 100px;
 	height: 100px;
-	background-image: url('img/mono.jpg');
+	background-image: url('img/mono.png');
 	background-position: right bottom;
 }
 
@@ -41,7 +41,7 @@ body {
 	width: 376px;
 	height: 175px;
 	background-position: -324px -330px;
-	background-image: url('img/monotone.jpg');
+	background-image: url('img/monotone.png');
 	display: none;
 }
 
