@@ -4,6 +4,9 @@
  */
 var HISTBW = HISTBW || {};
 
+HISTBW.topZIndex = 600;
+HISTBW.bottomZIndex = 500;
+
 /**
  * This is called by the framework after widget was successfully loaded
  */ 
@@ -12,6 +15,8 @@ function histbw_startup() {
 	HISTBW.dragElement = null;
 	$('#toneDrag').on('mousedown', HISTBW.startDragElement);
 	$('#monoDrag').on('mousedown', HISTBW.startDragElement);
+	$('#monoToneDragMono').on('mousedown', HISTBW.startDragElement);
+	$('#monoToneDragTone').on('mousedown', HISTBW.startDragElement);
 	$(document).on('mouseup', HISTBW.stopDragElement);
 	$(document).on('mousemove', HISTBW.handleMouseMove);
 };
@@ -38,12 +43,20 @@ HISTBW.startDragElement = function(evt) {
  */
 HISTBW.handleMouseMove = function(evt) {
 	if(HISTBW.dragElement != null) {
-		if(HISTBW.dragElement.attr('id') === 'monoDrag') {
-			$('#mono').width(1024 - evt.pageX);
-			$('#mono').height(730 - evt.pageY);
-		}else if(HISTBW.dragElement.attr('id') === 'toneDrag') {
-			$('#tone').width(evt.pageX);
-			$('#tone').height(evt.pageY);
+		var id = HISTBW.dragElement.attr('id');
+		var sel;
+		if(id === 'monoDrag' || id === 'monoToneDragMono') {
+			sel = '#mono';
+			$(sel).width(1024 - evt.pageX);
+			$(sel).height(730 - evt.pageY);
+			$(sel).css('z-index', HISTBW.topZIndex);
+			$(sel).css('z-index', HISTBW.bottomZIndex);
+		}else if(id === 'toneDrag' || id === 'monoToneDragTone') {
+			sel = '#tone';
+			$(sel).width(evt.pageX);
+			$(sel).height(evt.pageY);
+			$(sel).css('z-index', HISTBW.topZIndex);
+			$(sel).css('z-index', HISTBW.bottomZIndex);
 		}
 		HISTBW.computeOverlap();
 	}
