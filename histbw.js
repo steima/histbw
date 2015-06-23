@@ -27,12 +27,10 @@ function histbw_teardown() {
  * Reacts to the mouse down
  */
 HISTBW.startDragElement = function(evt) {
-	console.log('started to drag');
 	var dragTarget = $(evt.target);
 	HISTBW.dragElement = dragTarget;
 	HISTBW.deLeft = HISTBW.dragElement.offset().left;
 	HISTBW.deTop = HISTBW.dragElement.offset().top;
-	console.log(dragTarget);
 };
 
 /**
@@ -47,16 +45,42 @@ HISTBW.handleMouseMove = function(evt) {
 			$('#tone').width(evt.pageX);
 			$('#tone').height(evt.pageY);
 		}
+		HISTBW.computeOverlap();
 	}
+};
+
+/**
+ * Computes whether tone and mono overlap and from where to where
+ */
+HISTBW.computeOverlap = function() {
+	var mx = 1024 - $('#mono').width();
+	var my = 730 - $('#mono').height();
+	var tx = $('#tone').width();
+	var ty = $('#tone').height();
+	if(mx < tx && my < ty) {
+		console.log('overlap!');
+		$('#monotone').show();
+		var w = tx - mx;
+		var h = ty - my;
+		console.log('mx ' + mx + ' my ' + my + ' tx ' + tx + ' ty ' + ty);
+
+		console.log('displaying monotone w ' + w + ' h ' + h);
+		$('#monotone').width(w);
+		$('#monotone').height(h);
+		$('#monotone').offset({ left: mx, top: my });
+		$('#monotone').css('background-position', '-' + mx + 'px -' + my + 'px');
+	}else{
+		console.log('exit overlap');
+		$('#monotone').hide();
+	}
+	// console.log('mx ' + mx + ' my ' + my + ' tx ' + tx + ' ty ' + ty);
 };
 
 /**
  * Reacts to the mouse down
  */
 HISTBW.stopDragElement = function(evt) {
-	console.log('stopped to drag');
 	var dragTarget = $(evt.target);
-	console.log(dragTarget);
 	HISTBW.dragElement = null;
 };
 
